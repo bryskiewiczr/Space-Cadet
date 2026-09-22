@@ -15,3 +15,6 @@ Vector2 velocity = Velocity;
 velocity.Y += 100f * (float)delta;
 Velocity = velocity;
 ```
+
+More on this here: https://docs.godotengine.org/en/latest/tutorials/scripting/c_sharp/c_sharp_basics.html#common-pitfalls
+

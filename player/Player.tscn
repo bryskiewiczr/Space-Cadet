@@ -251,6 +251,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.29869214),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Shoot"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wnvi2"]
 _data = {
@@ -280,3 +294,19 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1155392505]
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_x8kxw")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=476045432]
+position = Vector2(-1, 1)
+limit_left = 0
+limit_right = 400
+limit_bottom = 224
+
+[node name="ShootRightMarker" type="Marker2D" parent="." unique_id=1211525807]
+position = Vector2(20, -17)
+
+[node name="ShootLeftMarker" type="Marker2D" parent="." unique_id=251927968]
+position = Vector2(-20, -17)
+
+[node name="ShootCooldown" type="Timer" parent="." unique_id=201761232]
+wait_time = 0.2
+one_shot = true

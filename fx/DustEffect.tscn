@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dxlau56d8iovd"]
+
+[ext_resource type="Texture2D" uid="uid://w57kit7vrnko" path="res://assets/textures/fx/dust1.png" id="1_vrfxd"]
+[ext_resource type="Texture2D" uid="uid://mbv5lonw0ktq" path="res://assets/textures/fx/dust2.png" id="2_x7lg1"]
+[ext_resource type="Texture2D" uid="uid://bg8y74mmiug1c" path="res://assets/textures/fx/dust3.png" id="3_d4qqr"]
+[ext_resource type="Texture2D" uid="uid://chxgw407gy5ow" path="res://assets/textures/fx/dust4.png" id="4_qpcmd"]
+
+[sub_resource type="Animation" id="Animation_doicj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_vrfxd")]
+}
+
+[sub_resource type="Animation" id="Animation_4vj72"]
+resource_name = "dust_cloud"
+length = 0.3
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616, 0.23076925),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_vrfxd"), ExtResource("2_x7lg1"), ExtResource("3_d4qqr"), ExtResource("4_qpcmd")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.30769232),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41y6a"]
+_data = {
+&"RESET": SubResource("Animation_doicj"),
+&"dust_cloud": SubResource("Animation_4vj72")
+}
+
+[node name="DustEffect" type="Node2D" unique_id=652453982]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1005573144]
+libraries/ = SubResource("AnimationLibrary_41y6a")
+autoplay = &"dust_cloud"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1050970327]
+position = Vector2(0, -8)
+texture = ExtResource("1_vrfxd")

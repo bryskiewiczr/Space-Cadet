@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://rnmrthlruo2o"]
+
+[ext_resource type="Script" uid="uid://dxp14bwr1xywi" path="res://combat/Laser.cs" id="1_j67ly"]
+[ext_resource type="Texture2D" uid="uid://cixg5faaytx6i" path="res://assets/textures/fx/player-shoot.png" id="1_ui3dl"]
+
+[sub_resource type="Animation" id="Animation_j67ly"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ui3dl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_584pl"]
+resource_name = "default"
+length = 0.39999999999999997
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ui3dl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3tby"]
+_data = {
+&"RESET": SubResource("Animation_j67ly"),
+&"default": SubResource("Animation_584pl")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o6mel"]
+radius = 3.0
+height = 10.0
+
+[node name="Laser" type="CharacterBody2D" unique_id=1020358409]
+script = ExtResource("1_j67ly")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1835242384]
+libraries/ = SubResource("AnimationLibrary_q3tby")
+autoplay = &"default"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=654344564]
+texture = ExtResource("1_ui3dl")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132377700]
+position = Vector2(1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_o6mel")
