@@ -23,4 +23,4 @@ metadata/_edit_lock_ = true
 position = Vector2(211, 116)
 
 [node name="WalkingEnemy" parent="." unique_id=215157596 instance=ExtResource("4_w7r7j")]
-position = Vector2(361, 184)
+position = Vector2(359, 184)

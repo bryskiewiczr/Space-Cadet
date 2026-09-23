@@ -280,6 +280,7 @@ _data = {
 size = Vector2(14, 29)
 
 [node name="Player" type="CharacterBody2D" unique_id=1674674724]
+collision_layer = 2
 script = ExtResource("1_ulp21")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=95592199]

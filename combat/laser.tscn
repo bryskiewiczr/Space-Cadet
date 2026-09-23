@@ -44,7 +44,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_584pl"]
 resource_name = "default"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -95,6 +95,7 @@ radius = 3.0
 height = 10.0
 
 [node name="Laser" type="CharacterBody2D" unique_id=1020358409]
+collision_layer = 4
 script = ExtResource("1_j67ly")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1835242384]

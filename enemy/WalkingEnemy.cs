@@ -25,12 +25,9 @@ public partial class WalkingEnemy : CharacterBody2D {
     public override void _PhysicsProcess(double delta) {
         // raycasting
         // on platforms
-        if (!_rightRayDown.IsColliding()) _direction *= -1;
-        else if (!_leftRayDown.IsColliding()) _direction *= -1;
-        
+        if (!_rightRayDown.IsColliding() || !_leftRayDown.IsColliding()) _direction *= -1;
         // against walls
-        if (_rightRayWall.IsColliding()) _direction *= -1;
-        else if (_leftRayWall.IsColliding()) _direction *= -1;
+        if (_rightRayWall.IsColliding() || _leftRayWall.IsColliding()) _direction *= -1;
         
         // apply gravity
         if (!IsOnFloor()) {

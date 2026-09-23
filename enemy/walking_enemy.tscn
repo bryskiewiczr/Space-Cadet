@@ -93,6 +93,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m206h"]
 
 [node name="WalkingEnemy" type="CharacterBody2D" unique_id=215157596]
+collision_layer = 8
 script = ExtResource("1_0nuve")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=138264287]
