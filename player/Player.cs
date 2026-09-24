@@ -17,6 +17,7 @@ public partial class Player : CharacterBody2D {
 
 	private AnimationPlayer _playerAnimationPlayer;
 	private Sprite2D _playerSprite;
+	private HitBox _playerHitbox;
 	private Marker2D _shootLeftMarker;
 	private Marker2D _shootRightMarker;
 	private Timer _shootCooldownTimer;
@@ -26,12 +27,15 @@ public partial class Player : CharacterBody2D {
 	public override void _Ready() {
 		_playerAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_playerSprite = GetNode<Sprite2D>("Sprite2D");
+		_playerHitbox = GetNode<HitBox>("HitBox");
 		_shootLeftMarker = GetNode<Marker2D>("ShootLeftMarker");
 		_shootRightMarker = GetNode<Marker2D>("ShootRightMarker");
 		_shootCooldownTimer = GetNode<Timer>("ShootCooldown");
 		_instancer = GetNodeOrNull<Instancer>("/root/Instancer");  // access AutoLoad
 
 		_shootCooldownTimer.Timeout += OnShootCooldownTimeout;
+		_playerHitbox.Died += () => OnHitboxDied();
+		_playerHitbox.TookDamage += (float damage) => OnHitboxTookDamage(damage);
 	}
 
 	public override void _Process(double delta) {
@@ -129,5 +133,13 @@ public partial class Player : CharacterBody2D {
 		_canShoot = true;
 		if (_isShooting && Input.IsActionPressed("shoot")) Shoot();
 		else _isShooting = false;
+	}
+
+	private void OnHitboxDied() {
+		QueueFree();
+	}
+
+	private bool OnHitboxTookDamage(float damage) {
+		return false;
 	}
 }
