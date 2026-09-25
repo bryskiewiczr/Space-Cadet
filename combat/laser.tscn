@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxp14bwr1xywi" path="res://combat/Laser.cs" id="1_j67ly"]
 [ext_resource type="Texture2D" uid="uid://cixg5faaytx6i" path="res://assets/textures/fx/player-shoot.png" id="1_ui3dl"]
+[ext_resource type="PackedScene" uid="uid://bpynr16wawh6" path="res://combat/hurt_box.tscn" id="3_584pl"]
 
 [sub_resource type="Animation" id="Animation_j67ly"]
 length = 0.001
@@ -94,6 +95,10 @@ _data = {
 radius = 3.0
 height = 10.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3tby"]
+radius = 3.0
+height = 10.0
+
 [node name="Laser" type="CharacterBody2D" unique_id=1020358409]
 collision_layer = 4
 script = ExtResource("1_j67ly")
@@ -110,3 +115,15 @@ hframes = 4
 position = Vector2(1, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_o6mel")
+
+[node name="HurtBox" parent="." unique_id=705411038 instance=ExtResource("3_584pl")]
+collision_layer = 128
+collision_mask = 33
+
+[node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
+position = Vector2(1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_q3tby")
+debug_color = Color(0.92098504, 0.2809496, 0, 0.41960785)
+
+[editable path="HurtBox"]

@@ -7,14 +7,21 @@ public partial class Laser : CharacterBody2D {
 	private Vector2 _direction = Vector2.Zero;
 
 	private Sprite2D _laserSprite;
+	private HurtBox _laserHurtBox;
 
 	public override void _Ready() {
 		_laserSprite = GetNode<Sprite2D>("Sprite2D");
+		_laserHurtBox = GetNode<HurtBox>("HurtBox");
+		_laserHurtBox.DamageApplied += OnDamageApplied;		// when projectile hits something
 	}
 	
 	public override void _PhysicsProcess(double delta) {
 		Velocity = _direction * _speed;
-		MoveAndSlide();
+		if (MoveAndSlide()) {
+			// MoveAndSlide returns true when the body collides,
+			// so if it's true, we can just delete the projectile
+			QueueFree();
+		}
 	}
 
 	public async void Launch(Vector2 direction) {
@@ -29,6 +36,10 @@ public partial class Laser : CharacterBody2D {
 			GetTree().CreateTimer(_timeToLive),
 			SceneTreeTimer.SignalName.Timeout
 		);
+		QueueFree();
+	}
+
+	private void OnDamageApplied() {
 		QueueFree();
 	}
 }

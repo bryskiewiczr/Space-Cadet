@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dhnx6fstksc58" path="res://enemy/WalkingEnemy.cs" id="1_0nuve"]
 [ext_resource type="Texture2D" uid="uid://t23jkr8wpeqr" path="res://assets/textures/enemies/crab/crab-walk.png" id="2_c32nf"]
 [ext_resource type="PackedScene" uid="uid://b6ltt57ey5a5d" path="res://combat/hit_box.tscn" id="3_c32nf"]
+[ext_resource type="PackedScene" uid="uid://bpynr16wawh6" path="res://combat/hurt_box.tscn" id="4_7fl6j"]
 
 [sub_resource type="Animation" id="Animation_7fl6j"]
 length = 0.001
@@ -96,6 +97,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fl6j"]
 size = Vector2(19, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndqcf"]
+
 [node name="WalkingEnemy" type="CharacterBody2D" unique_id=215157596]
 collision_layer = 8
 script = ExtResource("1_0nuve")
@@ -132,7 +135,7 @@ target_position = Vector2(0, 10)
 
 [node name="HitBox" parent="." unique_id=1979358492 instance=ExtResource("3_c32nf")]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 128
 _maxHp = 30.0
 
 [node name="CollisionShape2D" parent="HitBox" index="0" unique_id=1566121367]
@@ -140,4 +143,14 @@ position = Vector2(-0.5, -10)
 shape = SubResource("RectangleShape2D_7fl6j")
 debug_color = Color(0.06688977, 0.6499573, 3.85046e-07, 0.41960785)
 
+[node name="HurtBox" parent="." unique_id=705411038 instance=ExtResource("4_7fl6j")]
+collision_layer = 64
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ndqcf")
+debug_color = Color(0.89009106, 0.3263901, 0, 0.41960785)
+
 [editable path="HitBox"]
+[editable path="HurtBox"]
