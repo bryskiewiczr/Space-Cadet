@@ -19,7 +19,6 @@ public partial class HurtBox : Area2D {
 
     private void OnAreaEntered(Area2D area) {
         if (area is HitBox hitbox) {
-            GD.Print("Damage applied");
             ApplyDamage(hitbox);
         }
     }

@@ -7,15 +7,16 @@ public partial class Player : CharacterBody2D {
 	private float _jumpSpeed = 300.0f;
 	private float _moveSpeed = 100.0f;
 	private float _slideStopDelta = 10.0f;
+	private float _invincibilityDuration = 3.0f;
 	
 	private bool _isMoving;
 	private bool _isFacingLeft;
 	private bool _canDoubleJump = true;
-	
 	private bool _isShooting;
 	private bool _canShoot = true;
 
 	private AnimationPlayer _playerAnimationPlayer;
+	private AnimationPlayer _playerInvincibleAnimationPlayer;
 	private Sprite2D _playerSprite;
 	private HitBox _playerHitbox;
 	private Marker2D _shootLeftMarker;
@@ -26,6 +27,7 @@ public partial class Player : CharacterBody2D {
 
 	public override void _Ready() {
 		_playerAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		_playerInvincibleAnimationPlayer = GetNode<AnimationPlayer>("InvincibilityAnimationPlayer");
 		_playerSprite = GetNode<Sprite2D>("Sprite2D");
 		_playerHitbox = GetNode<HitBox>("HitBox");
 		_shootLeftMarker = GetNode<Marker2D>("ShootLeftMarker");
@@ -36,6 +38,7 @@ public partial class Player : CharacterBody2D {
 		_shootCooldownTimer.Timeout += OnShootCooldownTimeout;
 		_playerHitbox.Died += () => OnHitboxDied();
 		_playerHitbox.TookDamage += (float damage) => OnHitboxTookDamage(damage);
+		_playerHitbox.InvincibilityEnded += OnInvincibilityEnded;
 	}
 
 	public override void _Process(double delta) {
@@ -139,7 +142,12 @@ public partial class Player : CharacterBody2D {
 		QueueFree();
 	}
 
-	private bool OnHitboxTookDamage(float damage) {
-		return false;
+	private void OnHitboxTookDamage(float amount) {
+		_playerHitbox.TurnInvincible(_invincibilityDuration);
+		_playerInvincibleAnimationPlayer.Play("hurt");
+	}
+
+	private void OnInvincibilityEnded() {
+		_playerInvincibleAnimationPlayer.Stop();
 	}
 }
