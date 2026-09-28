@@ -8,19 +8,21 @@ public partial class Laser : CharacterBody2D {
 
 	private Sprite2D _laserSprite;
 	private HurtBox _laserHurtBox;
+	
+	private Instancer _instancer;  // declare an AutoLoad
 
 	public override void _Ready() {
 		_laserSprite = GetNode<Sprite2D>("Sprite2D");
 		_laserHurtBox = GetNode<HurtBox>("HurtBox");
 		_laserHurtBox.DamageApplied += OnDamageApplied;		// when projectile hits something
+		_instancer = GetNodeOrNull<Instancer>("/root/Instancer");
 	}
 	
 	public override void _PhysicsProcess(double delta) {
 		Velocity = _direction * _speed;
-		if (MoveAndSlide()) {
-			// MoveAndSlide returns true when the body collides,
-			// so if it's true, we can just delete the projectile
-			QueueFree();
+		if (MoveAndSlide()) { 
+			// MoveAndSlide() returns true when detects collision
+			OnDamageApplied();
 		}
 	}
 
@@ -40,6 +42,7 @@ public partial class Laser : CharacterBody2D {
 	}
 
 	private void OnDamageApplied() {
+		_instancer.InstanceSceneToLevel(_instancer.ProjectileHitEffectScene, GlobalPosition);
 		QueueFree();
 	}
 }

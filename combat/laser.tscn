@@ -112,7 +112,6 @@ texture = ExtResource("1_ui3dl")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132377700]
-position = Vector2(1, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_o6mel")
 
@@ -121,7 +120,7 @@ collision_layer = 128
 collision_mask = 33
 
 [node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
-position = Vector2(1, 0)
+position = Vector2(5, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_q3tby")
 debug_color = Color(0.92098504, 0.2809496, 0, 0.41960785)

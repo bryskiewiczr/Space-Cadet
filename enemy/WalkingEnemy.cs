@@ -16,6 +16,8 @@ public partial class WalkingEnemy : CharacterBody2D {
     private RayCast2D _leftRayWall;
     private RayCast2D _rightRayWall;
 
+    private Instancer _instancer;
+
     public override void _Ready() {
         _walkingEnemySprite = GetNode<Sprite2D>("Sprite2D");
         _walkingEnemyHitbox = GetNode<HitBox>("HitBox");
@@ -27,6 +29,8 @@ public partial class WalkingEnemy : CharacterBody2D {
 
         _walkingEnemyHitbox.Died += () => OnHitboxDied();
         _walkingEnemyHitbox.TookDamage += (float damage) => OnHitboxTookDamage(damage);
+
+        _instancer = GetNodeOrNull<Instancer>("/root/Instancer");
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -52,6 +56,7 @@ public partial class WalkingEnemy : CharacterBody2D {
 
     private void OnHitboxDied() {
         QueueFree();
+        _instancer.InstanceSceneToLevel(_instancer.EnemyExplodeScene, GlobalPosition);
     }
     
     private bool OnHitboxTookDamage(float damage) {
