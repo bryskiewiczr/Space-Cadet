@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cc7mitwr0e6sf"]
+
+[node name="GameCamera" type="Camera2D" unique_id=1250240137]
+limit_bottom = 224

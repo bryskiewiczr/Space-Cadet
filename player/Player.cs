@@ -23,6 +23,8 @@ public partial class Player : CharacterBody2D {
 	private Marker2D _shootRightMarker;
 	private Timer _shootCooldownTimer;
 	
+	public RemoteTransform2D PlayerRemoteTransform2D;
+	
 	private Instancer _instancer;  // declare an AutoLoad
 
 	public override void _Ready() {
@@ -33,6 +35,8 @@ public partial class Player : CharacterBody2D {
 		_shootLeftMarker = GetNode<Marker2D>("ShootLeftMarker");
 		_shootRightMarker = GetNode<Marker2D>("ShootRightMarker");
 		_shootCooldownTimer = GetNode<Timer>("ShootCooldown");
+		PlayerRemoteTransform2D = GetNode<RemoteTransform2D>("RemoteTransform2D");
+		
 		_instancer = GetNodeOrNull<Instancer>("/root/Instancer");  // access AutoLoad
 
 		_shootCooldownTimer.Timeout += OnShootCooldownTimeout;

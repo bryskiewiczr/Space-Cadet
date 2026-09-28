@@ -342,12 +342,6 @@ hframes = 6
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_x8kxw")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=476045432]
-position = Vector2(-1, 1)
-limit_left = 0
-limit_right = 400
-limit_bottom = 224
-
 [node name="ShootRightMarker" type="Marker2D" parent="." unique_id=1211525807]
 position = Vector2(20, -17)
 
@@ -361,10 +355,13 @@ one_shot = true
 [node name="HitBox" parent="." unique_id=1979358492 instance=ExtResource("6_aqcbf")]
 collision_layer = 16
 collision_mask = 64
+_maxHp = 10.0
 
 [node name="CollisionShape2D" parent="HitBox" index="0" unique_id=1566121367]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_gskgj")
 debug_color = Color(2.5990605e-06, 0.6428128, 0.31664625, 0.41960785)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1898233288]
 
 [editable path="HitBox"]
