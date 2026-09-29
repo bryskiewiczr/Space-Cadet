@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqc6ce0pux62e" path="res://player/Player.tscn" id="2_x25rp"]
 [ext_resource type="PackedScene" uid="uid://cmxo1qi1rec3d" path="res://enemy/walking_enemy.tscn" id="4_w7r7j"]
 [ext_resource type="PackedScene" uid="uid://cc7mitwr0e6sf" path="res://other/game_camera.tscn" id="5_o6mel"]
+[ext_resource type="PackedScene" uid="uid://dbgm520lumtdo" path="res://ui/hud.tscn" id="6_e7anx"]
 
 [node name="TestLevel" type="Node2D" unique_id=1207813325]
 script = ExtResource("1_46lwt")
@@ -27,3 +28,7 @@ position = Vector2(211, 116)
 position = Vector2(359, 184)
 
 [node name="GameCamera" parent="." unique_id=1250240137 instance=ExtResource("5_o6mel")]
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1025855261]
+
+[node name="Hud" parent="UILayer" unique_id=1646909729 instance=ExtResource("6_e7anx")]

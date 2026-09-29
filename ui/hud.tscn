@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dbgm520lumtdo"]
+
+[ext_resource type="Script" uid="uid://jewufcamii5d" path="res://ui/Hud.cs" id="1_rbyyf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m206h"]
+bg_color = Color(0, 0, 0, 0.5882353)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 0.105882354, 0.5882353)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 0.19607843)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii72t"]
+bg_color = Color(0.30980393, 0.5019608, 0.23137255, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 2
+
+[node name="Hud" type="Control" unique_id=1646909729]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rbyyf")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=283896317]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_m206h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ii72t")
+step = 1.0
+value = 50.0
+show_percentage = false
