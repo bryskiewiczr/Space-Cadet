@@ -18,12 +18,15 @@ public partial class Player : CharacterBody2D {
 	private AnimationPlayer _playerAnimationPlayer;
 	private AnimationPlayer _playerInvincibleAnimationPlayer;
 	private Sprite2D _playerSprite;
-	private HitBox _playerHitbox;
+	public HitBox PlayerHitbox;
 	private Marker2D _shootLeftMarker;
 	private Marker2D _shootRightMarker;
 	private Timer _shootCooldownTimer;
 	
 	public RemoteTransform2D PlayerRemoteTransform2D;
+
+	[Signal]
+	public delegate void HealthChangedEventHandler(float maxHp, float hpLeft);
 	
 	private Instancer _instancer;  // declare an AutoLoad
 
@@ -31,7 +34,7 @@ public partial class Player : CharacterBody2D {
 		_playerAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_playerInvincibleAnimationPlayer = GetNode<AnimationPlayer>("InvincibilityAnimationPlayer");
 		_playerSprite = GetNode<Sprite2D>("Sprite2D");
-		_playerHitbox = GetNode<HitBox>("HitBox");
+		PlayerHitbox = GetNode<HitBox>("HitBox");
 		_shootLeftMarker = GetNode<Marker2D>("ShootLeftMarker");
 		_shootRightMarker = GetNode<Marker2D>("ShootRightMarker");
 		_shootCooldownTimer = GetNode<Timer>("ShootCooldown");
@@ -40,9 +43,9 @@ public partial class Player : CharacterBody2D {
 		_instancer = GetNodeOrNull<Instancer>("/root/Instancer");  // access AutoLoad
 
 		_shootCooldownTimer.Timeout += OnShootCooldownTimeout;
-		_playerHitbox.Died += () => OnHitboxDied();
-		_playerHitbox.TookDamage += (float damage) => OnHitboxTookDamage(damage);
-		_playerHitbox.InvincibilityEnded += OnInvincibilityEnded;
+		PlayerHitbox.Died += () => OnHitboxDied();
+		PlayerHitbox.TookDamage += (float damage) => OnHitboxTookDamage(damage);
+		PlayerHitbox.InvincibilityEnded += OnInvincibilityEnded;
 	}
 
 	public override void _Process(double delta) {
@@ -143,12 +146,14 @@ public partial class Player : CharacterBody2D {
 	}
 
 	private void OnHitboxDied() {
+		EmitSignalHealthChanged(PlayerHitbox.MaxHp, PlayerHitbox.Hp);
 		QueueFree();
 	}
 
 	private void OnHitboxTookDamage(float amount) {
-		_playerHitbox.TurnInvincible(_invincibilityDuration);
+		PlayerHitbox.TurnInvincible(_invincibilityDuration);
 		_playerInvincibleAnimationPlayer.Play("hurt");
+		EmitSignalHealthChanged(PlayerHitbox.MaxHp, PlayerHitbox.Hp);
 	}
 
 	private void OnInvincibilityEnded() {

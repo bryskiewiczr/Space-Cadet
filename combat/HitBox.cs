@@ -2,8 +2,8 @@ using Godot;
 
 public partial class HitBox : Area2D {
     [Export]
-    private float _maxHp = 100.0f;
-    private float _hp = 100.0f;
+    public float MaxHp = 100.0f;
+    public float Hp = 100.0f;
 
     private Timer _invincibilityTimer;
 
@@ -18,7 +18,7 @@ public partial class HitBox : Area2D {
     public delegate void InvincibilityEndedEventHandler();
     
     public override void _Ready() {
-        _hp = _maxHp;
+        Hp = MaxHp;
         _invincibilityTimer = GetNode<Timer>("InvincibilityTimer");
         _invincibilityTimer.Timeout += OnInvincibilityTimerTimeout;
     }
@@ -26,11 +26,11 @@ public partial class HitBox : Area2D {
     public bool TakeDamage(float damage) {
         var tookDamage = false;
         if (damage > 0.0f && !_isInvincible) {
-            _hp -= damage;
+            Hp -= damage;
             tookDamage = true;
             GD.Print($"Damage taken: {damage}");
-            if (_hp <= 0.0f) {
-                _hp = 0.0f;
+            if (Hp <= 0.0f) {
+                Hp = 0.0f;
                 EmitSignal(SignalName.Died);
             } else {
                 EmitSignal(SignalName.TookDamage, damage);

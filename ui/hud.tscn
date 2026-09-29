@@ -30,7 +30,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rbyyf")
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=283896317]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=283896317]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 5.0
