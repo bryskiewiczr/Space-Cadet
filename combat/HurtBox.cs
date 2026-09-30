@@ -4,7 +4,7 @@ using System;
 public partial class HurtBox : Area2D {
     [Export] private float _damage = 10.0f;
     
-    [Export] private bool _oneShot = true;      // determines if damage is applied continuously on contact
+    [Export] private bool _oneShot = false;      // determines if damage is applied continuously on contact
     private bool _isActive = true;
 
     private HitBox _toDamage;

@@ -294,7 +294,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_mhpjh"]
 resource_name = "hurt"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -355,7 +355,7 @@ one_shot = true
 [node name="HitBox" parent="." unique_id=1979358492 instance=ExtResource("6_aqcbf")]
 collision_layer = 16
 collision_mask = 64
-_maxHp = 10.0
+MaxHp = 50.0
 
 [node name="CollisionShape2D" parent="HitBox" index="0" unique_id=1566121367]
 position = Vector2(0, -14)

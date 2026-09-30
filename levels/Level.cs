@@ -17,7 +17,7 @@ public partial class Level : Node {
         );
 
         // fix this
-        Player.HealthChangedEventHandler += OnPlayerHealthChanged;
+        _player.HealthChanged += OnPlayerHealthChanged;
     }
 
     public override void _Process(double delta) {
@@ -29,4 +29,3 @@ public partial class Level : Node {
         _hud.SetHealthBarValues(maxHp, hpLeft);
     }
 }
-

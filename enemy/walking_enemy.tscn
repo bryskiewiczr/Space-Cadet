@@ -136,7 +136,7 @@ target_position = Vector2(0, 10)
 [node name="HitBox" parent="." unique_id=1979358492 instance=ExtResource("3_c32nf")]
 collision_layer = 32
 collision_mask = 128
-_maxHp = 30.0
+MaxHp = 30.0
 
 [node name="CollisionShape2D" parent="HitBox" index="0" unique_id=1566121367]
 position = Vector2(-0.5, -10)
@@ -146,6 +146,7 @@ debug_color = Color(0.06688977, 0.6499573, 3.85046e-07, 0.41960785)
 [node name="HurtBox" parent="." unique_id=705411038 instance=ExtResource("4_7fl6j")]
 collision_layer = 64
 collision_mask = 16
+_oneShot = false
 
 [node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
 position = Vector2(0, -10)
