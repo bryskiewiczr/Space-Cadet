@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://clnr32igbav58"]
+
+[ext_resource type="Texture2D" uid="uid://hivhi3jb33wo" path="res://assets/textures/enemies/fly_eye/fly-eye.png" id="1_fm2vn"]
+[ext_resource type="Script" uid="uid://bhekdxklhhgl0" path="res://enemy/FlyingEnemy.cs" id="1_kbmdj"]
+[ext_resource type="PackedScene" uid="uid://b6ltt57ey5a5d" path="res://combat/hit_box.tscn" id="2_kbmdj"]
+[ext_resource type="PackedScene" uid="uid://bpynr16wawh6" path="res://combat/hurt_box.tscn" id="3_m6ard"]
+
+[sub_resource type="Animation" id="Animation_q746j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_fm2vn")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yy35i"]
+resource_name = "flying"
+length = 0.39999999999999997
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_fm2vn")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wb8dy"]
+_data = {
+&"RESET": SubResource("Animation_q746j"),
+&"flying": SubResource("Animation_yy35i")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m206h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4loue"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ii72t"]
+
+[node name="FlyingEnemy" type="CharacterBody2D" unique_id=1904523287]
+collision_layer = 8
+script = ExtResource("1_kbmdj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1443260673]
+texture = ExtResource("1_fm2vn")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=888403013]
+libraries/ = SubResource("AnimationLibrary_wb8dy")
+autoplay = &"flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380707244]
+shape = SubResource("CircleShape2D_m206h")
+
+[node name="HitBox" parent="." unique_id=1979358492 instance=ExtResource("2_kbmdj")]
+collision_layer = 32
+collision_mask = 128
+MaxHp = 20.0
+
+[node name="CollisionShape2D" parent="HitBox" index="0" unique_id=1566121367]
+shape = SubResource("CircleShape2D_4loue")
+debug_color = Color(0, 0.6286818, 0.498316, 0.58431375)
+
+[node name="HurtBox" parent="." unique_id=705411038 instance=ExtResource("3_m6ard")]
+collision_layer = 64
+collision_mask = 16
+_damage = 20.0
+
+[node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
+shape = SubResource("CircleShape2D_ii72t")
+debug_color = Color(0.8784314, 0.34117648, 0, 0.7882353)
+
+[editable path="HitBox"]
+[editable path="HurtBox"]
