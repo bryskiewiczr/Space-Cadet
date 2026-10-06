@@ -31,6 +31,12 @@ public partial class FlyingEnemy : CharacterBody2D {
     }
 
     public override void _PhysicsProcess(double delta) {
+        Velocity = _direction * _speed;
+        SetFlyingEnemyMovementDirection();
+        MoveAndSlide();
+    }
+
+    public void SetFlyingEnemyMovementDirection() {
         _direction = (_destination - GlobalPosition).Normalized();
         var distanceToDestination = GlobalPosition.DistanceTo(_destination);
         if (distanceToDestination <= 1.0f) {
@@ -42,9 +48,6 @@ public partial class FlyingEnemy : CharacterBody2D {
                 _flyingEnemySprite.FlipH = !_flyingEnemySprite.FlipH;
             }
         }
-        
-        Velocity = _direction * _speed;
-        MoveAndSlide();
     }
 
     public void OnHitboxDied() {

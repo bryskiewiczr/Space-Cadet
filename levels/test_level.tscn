@@ -36,6 +36,7 @@ position = Vector2(359, 184)
 
 [node name="FlyingEnemy" parent="." unique_id=1904523287 instance=ExtResource("7_ur00s")]
 position = Vector2(254, 97)
+_speed = 60.0
 
 [node name="EndPositionMarker" parent="FlyingEnemy" index="5" unique_id=1013646489]
 position = Vector2(-105, -38)
