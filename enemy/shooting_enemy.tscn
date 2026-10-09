@@ -84,6 +84,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 0, 1, 0, 1, 2, 3]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ShootFireball"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thb1x"]
 _data = {
@@ -103,6 +117,7 @@ radius = 12.0
 [node name="ShootingEnemy" type="CharacterBody2D" unique_id=1637816704]
 collision_layer = 8
 script = ExtResource("1_dxgd0")
+_isFacingLeft = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=175918853]
 libraries/ = SubResource("AnimationLibrary_thb1x")
@@ -135,6 +150,16 @@ collision_mask = 16
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_p0yy5")
 debug_color = Color(0.93768704, 0.25136936, 1.92523e-07, 0.41960785)
+
+[node name="LeftShootingMarker" type="Marker2D" parent="." unique_id=478666105]
+position = Vector2(-19, -13)
+
+[node name="RightShootingMarker" type="Marker2D" parent="." unique_id=150264452]
+position = Vector2(19, -13)
+
+[node name="ProjectileCooldownTimer" type="Timer" parent="." unique_id=388737729]
+wait_time = 2.0
+autostart = true
 
 [editable path="HitBox"]
 [editable path="HurtBox"]

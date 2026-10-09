@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dbgm520lumtdo" path="res://ui/hud.tscn" id="6_e7anx"]
 [ext_resource type="PackedScene" uid="uid://clnr32igbav58" path="res://enemy/flying_enemy.tscn" id="7_ur00s"]
 [ext_resource type="PackedScene" uid="uid://dvdd5osunnxn2" path="res://enemy/shooting_enemy.tscn" id="8_wndkh"]
-[ext_resource type="PackedScene" uid="uid://b2n0vck4rotj" path="res://combat/fireball.tscn" id="9_ly3hx"]
 
 [node name="TestLevel" type="Node2D" unique_id=1207813325]
 script = ExtResource("1_46lwt")
@@ -45,9 +44,6 @@ position = Vector2(-105, -38)
 
 [node name="ShootingEnemy" parent="." unique_id=1637816704 instance=ExtResource("8_wndkh")]
 position = Vector2(77, 96)
-
-[node name="Fireball" parent="." unique_id=2080752697 instance=ExtResource("9_ly3hx")]
-position = Vector2(251, 129)
 
 [editable path="FlyingEnemy"]
 [editable path="FlyingEnemy/HitBox"]

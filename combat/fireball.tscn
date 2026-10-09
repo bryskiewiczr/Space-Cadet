@@ -92,7 +92,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m206h"]
-radius = 4.0
+radius = 4.1231055
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y15pa"]
 radius = 5.0
@@ -106,12 +106,10 @@ libraries/ = SubResource("AnimationLibrary_33vgk")
 autoplay = &"default"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=137624931]
-position = Vector2(0, -8)
 texture = ExtResource("2_mmps0")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1028435123]
-position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_m206h")
 
 [node name="HurtBox" parent="." unique_id=705411038 instance=ExtResource("3_opc1n")]
@@ -119,7 +117,6 @@ collision_layer = 128
 collision_mask = 17
 
 [node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
-position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_y15pa")
 debug_color = Color(0.89338404, 0.32198915, 5.7756904e-07, 0.41960785)
 

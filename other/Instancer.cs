@@ -6,12 +6,14 @@ public partial class Instancer : Node {
 	public PackedScene LaserShotScene;		// laser projectile
 	public PackedScene ProjectileHitEffectScene;		// laser projectile hits something
 	public PackedScene EnemyExplodeScene;
+	public PackedScene FireballScene;
 	
 	public override void _Ready() {
 		DustEffectScene = ResourceLoader.Load<PackedScene>("res://fx/DustEffect.tscn");
 		LaserShotScene = ResourceLoader.Load<PackedScene>("res://combat/laser.tscn");
 		ProjectileHitEffectScene = ResourceLoader.Load<PackedScene>("res://fx/ProjectileHitEffect.tscn");
 		EnemyExplodeScene = ResourceLoader.Load<PackedScene>("res://fx/EnemyExplosion.tscn");
+		FireballScene = ResourceLoader.Load<PackedScene>("res://combat/fireball.tscn");
 	}
 	
 	public Node2D InstanceSceneToLevel(PackedScene scene, Vector2 position) {
