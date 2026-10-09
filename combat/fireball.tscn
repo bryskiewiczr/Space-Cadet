@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://b2n0vck4rotj"]
+
+[ext_resource type="Script" uid="uid://dxp14bwr1xywi" path="res://combat/Laser.cs" id="1_icjw0"]
+[ext_resource type="Texture2D" uid="uid://c77l2t6ccctq0" path="res://assets/textures/enemies/lizard/fireball.png" id="2_mmps0"]
+[ext_resource type="PackedScene" uid="uid://bpynr16wawh6" path="res://combat/hurt_box.tscn" id="3_opc1n"]
+
+[sub_resource type="Animation" id="Animation_xth8r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_mmps0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o38hk"]
+resource_name = "default"
+length = 0.39999999999999997
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_mmps0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33vgk"]
+_data = {
+&"RESET": SubResource("Animation_xth8r"),
+&"default": SubResource("Animation_o38hk")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m206h"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y15pa"]
+radius = 5.0
+
+[node name="Fireball" type="CharacterBody2D" unique_id=2080752697]
+collision_layer = 4
+script = ExtResource("1_icjw0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2018174817]
+libraries/ = SubResource("AnimationLibrary_33vgk")
+autoplay = &"default"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=137624931]
+position = Vector2(0, -8)
+texture = ExtResource("2_mmps0")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1028435123]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_m206h")
+
+[node name="HurtBox" parent="." unique_id=705411038 instance=ExtResource("3_opc1n")]
+collision_layer = 128
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="HurtBox" index="0" unique_id=1724140979]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_y15pa")
+debug_color = Color(0.89338404, 0.32198915, 5.7756904e-07, 0.41960785)
+
+[editable path="HurtBox"]
