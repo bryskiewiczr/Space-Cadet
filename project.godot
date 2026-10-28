@@ -75,6 +75,7 @@ shoot={
 2d_physics/layer_6="enemy_hitbox"
 2d_physics/layer_7="enemy_hurtbox"
 2d_physics/layer_8="laser_hurtbox"
+2d_physics/layer_9="collectible"
 
 [physics]
 

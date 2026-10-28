@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dg43doq7joorm"]
+
+[ext_resource type="Texture2D" uid="uid://icviphtw8sjp" path="res://assets/textures/props/crate.png" id="1_4ql1b"]
+[ext_resource type="Script" uid="uid://brc86umco8ic3" path="res://items/CollectibleItem.cs" id="1_85k7m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m206h"]
+size = Vector2(18, 16)
+
+[node name="GunItem" type="Area2D" unique_id=1274814424]
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("1_85k7m")
+ItemName = "Gun_Item"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1170133204]
+texture = ExtResource("1_4ql1b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1582230542]
+shape = SubResource("RectangleShape2D_m206h")
